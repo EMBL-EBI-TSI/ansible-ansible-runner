@@ -2,6 +2,14 @@
 # Partial list of required roles
 # Install with: ansible-galaxy install -r requirements.yml -p external_roles/
 
+- src: geerlingguy.repo-epel
+  version: master
+  name: repo-epel
+
+- src: geerlingguy.ansible
+  version: master
+  name: ansible
+
 - src: jdauphant.vagrant
   version: master
   name: vagrant
