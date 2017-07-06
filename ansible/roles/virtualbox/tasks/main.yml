@@ -1,0 +1,34 @@
+- name: Install building dependencies
+  yum:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - binutils
+    - gcc
+    - make
+    - patch
+    - libgomp
+    - glibc-headers
+    - glibc-devel
+    - kernel-headers
+    - kernel-devel-3.10.0-514.21.2.el7.x86_64
+    - kernel-devel
+    - dkms
+
+- name: Install repo
+  get_url:
+    url: http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo
+    dest: /etc/yum.repos.d/
+
+- name: Install virtual box
+  yum:
+    name: VirtualBox-5.1
+    state: latest
+
+- name: Rebuild kernel modules
+  command: /usr/lib/virtualbox/vboxdrv.sh setup
+
+- name: Add user to relevant group
+  user: 
+    name: "{{ ansible_user_id }}" 
+    groups: vboxusers
