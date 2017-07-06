@@ -1,0 +1,7 @@
+---
+# Partial list of required roles
+# Install with: ansible-galaxy install -r requirements.yml -p external_roles/
+
+- src: jdauphant.vagrant
+  version: master
+  name: vagrant
